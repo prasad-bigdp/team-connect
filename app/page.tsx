@@ -8,6 +8,7 @@ import { Analytics } from "@vercel/analytics/react"
 export default function Home() {
   return (
     <div className="min-h-screen">
+       <link rel="icon" href="/favicon.ico" />
       <Analytics />
       <Navbar />
       
