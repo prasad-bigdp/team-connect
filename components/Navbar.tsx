@@ -1,7 +1,8 @@
-"use client"
+'use client';
+
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Users, Activity, Calendar, LogIn, LogOut, Bell } from 'lucide-react';
+import { Users, Activity, Calendar, LogIn, LogOut, Bell, Heart } from 'lucide-react';
 import Link from 'next/link';
 import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
@@ -33,12 +34,18 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <Activity className="h-6 w-6 text-primary" />
-              <span className="font-bold text-xl">Teen Connect</span>
+              <Heart className="h-6 w-6 text-primary" />
+              <span className="font-bold text-xl bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">MindfulZen</span>
             </Link>
           </div>
           
           <div className="flex items-center space-x-4">
+            <Link href="/about">
+              <Button variant="ghost" className="flex items-center space-x-2">
+                <Heart className="h-4 w-4" />
+                <span>About</span>
+              </Button>
+            </Link>
             <Link href="/community">
               <Button variant="ghost" className="flex items-center space-x-2">
                 <Users className="h-4 w-4" />
