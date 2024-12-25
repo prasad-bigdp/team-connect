@@ -4,10 +4,11 @@ import Navbar from '@/components/Navbar';
 import { Users, Brain, MapPin, Trophy } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import { Analytics } from "@vercel/analytics/react"
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <Analytics />
       <Navbar />
       
       {/* Hero Section */}
