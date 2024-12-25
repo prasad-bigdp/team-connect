@@ -31,6 +31,7 @@ export default function CommunityPage({ params }: { params: { id: string } }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const { toast } = useToast();
+  const [refreshMessages, setRefreshMessages] = useState(0);
 
   useEffect(() => {
     const fetchCommunity = async () => {
@@ -57,11 +58,16 @@ export default function CommunityPage({ params }: { params: { id: string } }) {
 
     fetchCommunity();
     fetchMessages();
-  }, [params.id]);
+  }, [params.id, refreshMessages]);
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newMessage.trim() || !auth.currentUser) {
+      toast({
+        title: 'Error',
+        description: 'Please sign in to send messages',
+        variant: 'destructive',
+      });
       return;
     }
 
@@ -74,10 +80,7 @@ export default function CommunityPage({ params }: { params: { id: string } }) {
       });
 
       setNewMessage('');
-      toast({
-        title: 'Success',
-        description: 'Message sent successfully',
-      });
+      setRefreshMessages(prev => prev + 1);
     } catch (error) {
       toast({
         title: 'Error',

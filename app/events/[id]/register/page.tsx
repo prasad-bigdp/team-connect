@@ -46,7 +46,14 @@ export default function EventRegistrationPage({ params }: { params: { id: string
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!auth.currentUser || !event) return;
+    if (!auth.currentUser || !event) {
+      toast({
+        title: 'Error',
+        description: 'Please sign in to register for events',
+        variant: 'destructive',
+      });
+      return;
+    }
 
     setLoading(true);
     try {
@@ -54,8 +61,10 @@ export default function EventRegistrationPage({ params }: { params: { id: string
       await addDoc(collection(db, 'eventRegistrations'), {
         eventId: params.id,
         userId: auth.currentUser.uid,
+        userName: auth.currentUser.displayName || 'Anonymous',
         ...formData,
         registeredAt: new Date().toISOString(),
+        status: 'registered'
       });
 
       // Update attendee count

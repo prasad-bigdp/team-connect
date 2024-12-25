@@ -8,6 +8,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { Calendar, MapPin, Users, Share2 } from 'lucide-react';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
+import { useRouter } from 'next/navigation';
 
 interface Event {
   id: string;
@@ -23,6 +24,7 @@ interface Event {
 
 export default function EventPage({ params }: { params: { id: string } }) {
   const [event, setEvent] = useState<Event | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -107,7 +109,11 @@ export default function EventPage({ params }: { params: { id: string } }) {
             </div>
 
             <div className="mt-8">
-              <Button size="lg" className="w-full md:w-auto">
+              <Button 
+                size="lg" 
+                className="w-full md:w-auto"
+                onClick={() => router.push(`/events/${event.id}/register`)}
+              >
                 Register for Event
               </Button>
             </div>
