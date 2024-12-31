@@ -15,7 +15,7 @@ export default function Home() {
       {/* Hero Section with Animated Background */}
       <section className="relative h-[700px] overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902"
+          src="/banner.jpeg"
           alt="Young teens having fun"
           fill
           className="object-cover brightness-75"
@@ -29,7 +29,7 @@ export default function Home() {
               <Button size="lg" className="animate-fade-up animation-delay-300 bg-primary hover:bg-primary/90 text-lg" asChild>
                 <Link href="/register">Join Now</Link>
               </Button>
-              <Button size="lg" variant="outline" className="animate-fade-up animation-delay-400 text-lg" asChild>
+              <Button size="lg" variant="outline" className="animate-fade-up animation-delay-400 text-lg text-black" asChild>
                 <Link href="/events">Join Activities</Link>
               </Button>
             </div>
